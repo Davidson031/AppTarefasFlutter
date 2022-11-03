@@ -2,7 +2,7 @@
 
 import 'package:app_tarefas/models/tarefa.dart';
 
-final listaDeTarefas =[
+final listaMockupTarefas =[
 
   Tarefa("Lavar Prato"),
   Tarefa("Passear com Cachorro"),
