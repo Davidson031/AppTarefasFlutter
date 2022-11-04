@@ -23,7 +23,8 @@ class _PaginaListaTarefasState extends State<PaginaListaTarefas> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Tarefas Pendentes"),
-        actions: [],
+        actions: [
+        ],
       ),
       body: ListView.builder(
         itemCount: lista.length,
