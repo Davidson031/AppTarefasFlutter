@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
+import '../components/TarefaTile.dart';
 import '../dados/tarefas.dart';
 import '../models/listaDeTarefas.dart';
 import '../utils/rotas.dart';
@@ -22,6 +23,7 @@ class _PaginaListaTarefasState extends State<PaginaListaTarefas> {
     final lista = Provider.of<ListaDeTarefas>(context).tarefas;
 
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
         title: const Text("Tarefas Pendentes"),
         actions: [
@@ -33,9 +35,7 @@ class _PaginaListaTarefasState extends State<PaginaListaTarefas> {
       body: ListView.builder(
         itemCount: lista.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(lista[index].titulo),
-          );
+          return TarefaTile(lista[index].titulo);
         },
       ),
     );
