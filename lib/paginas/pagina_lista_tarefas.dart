@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../dados/tarefas.dart';
 import '../models/listaDeTarefas.dart';
+import '../utils/rotas.dart';
 
 class PaginaListaTarefas extends StatefulWidget {
   const PaginaListaTarefas({Key? key}) : super(key: key);
@@ -24,6 +25,9 @@ class _PaginaListaTarefasState extends State<PaginaListaTarefas> {
       appBar: AppBar(
         title: const Text("Tarefas Pendentes"),
         actions: [
+          IconButton(onPressed: (){
+            Navigator.of(context).pushNamed(Rotas.TELA_ADICIONAR_TAREFA);
+          }, icon: Icon(Icons.add))
         ],
       ),
       body: ListView.builder(
