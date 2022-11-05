@@ -12,46 +12,39 @@ class TarefaTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.transparent,
-      elevation: 8.0,
+    return Container(
       margin: const EdgeInsets.only(left: 20, top: 20, right: 20),
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(64, 75, 96, 0.8),
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-        ),
+      height: 120,
+      decoration: const BoxDecoration(
+        color: Color.fromRGBO(64, 75, 96, 0.8),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      child: Center(
         child: ListTile(
           minLeadingWidth: 10,
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          minVerticalPadding: 0,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 15.0,
+          ),
           leading: Container(
-            height: 80,
+            height: 100,
             width: 10,
             decoration: BoxDecoration(
                 border: Border(
-              right: BorderSide(width: 1.0, color: Colors.white),
+              right: BorderSide(width: 2.0, color: Colors.white),
             )),
           ),
           title: Text(
             titulo,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontSize: 25),
           ),
           subtitle: Row(
             children: [
-              Icon(Icons.linear_scale, color: Colors.yellowAccent),
-              SizedBox(
-                height: 35,
-                width: 5,
-              ),
-              Text(
-                "** Urgente **",
-                style: TextStyle(color: Colors.grey),
-              )
+              Icon(Icons.linear_scale, color: Colors.grey, size: 50,),
             ],
           ),
-          trailing:
-              Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
+          trailing: Icon(Icons.done, color: Colors.green, size: 50.0),
         ),
       ),
     );
