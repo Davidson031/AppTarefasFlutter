@@ -13,20 +13,15 @@ class PaginaAdicionarTarefa extends StatefulWidget {
 }
 
 class _PaginaAdicionarTarefaState extends State<PaginaAdicionarTarefa> {
-
   final _formKey = GlobalKey<FormState>();
   String _tituloTarefa = '';
   String _linkTarefa = '';
 
-  void enviarForm(){
-
+  void enviarForm() {
     _formKey.currentState?.save();
 
-
-    final provider = Provider.of<ListaDeTarefas>(context, listen: false).adicionarTarefa(
-      Tarefa(_tituloTarefa, _linkTarefa)
-    );
-
+    // final provider = Provider.of<ListaDeTarefas>(context, listen: false)
+    //     .adicionarTarefa(Tarefa(_tituloTarefa, _linkTarefa));
   }
 
   @override

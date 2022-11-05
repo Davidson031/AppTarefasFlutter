@@ -35,7 +35,7 @@ class _PaginaListaTarefasState extends State<PaginaListaTarefas> {
       body: ListView.builder(
         itemCount: lista.length,
         itemBuilder: (context, index) {
-          return TarefaTile(lista[index].titulo);
+          return TarefaTile(lista[index]);
         },
       ),
     );

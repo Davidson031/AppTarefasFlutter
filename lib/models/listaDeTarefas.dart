@@ -13,4 +13,19 @@ class ListaDeTarefas with ChangeNotifier {
     _tarefas.add(tarefa);
     notifyListeners();
   }
+
+  void removerTarefa(Tarefa tarefa){
+
+    //int index = _tarefas.indexWhere((element) => tarefa.id == element.id);
+
+    _tarefas.removeWhere((element) => tarefa.id == element.id);
+
+    print('Remover Tarefa');
+
+    notifyListeners();
+
+    //_tarefas.remo
+
+
+  }
 }
