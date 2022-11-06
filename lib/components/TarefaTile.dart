@@ -66,12 +66,12 @@ class _TarefaTileState extends State<TarefaTile> {
             ),
           ],
         ),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.delete, color: Colors.red, size: 22.0),
-          ],
-        ),
+        // trailing: Column(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Icon(Icons.delete, color: Colors.red, size: 22.0),
+        //   ],
+        // ),
       ),
     );
   }
