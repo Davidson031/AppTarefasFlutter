@@ -7,10 +7,17 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
-class TarefaTile extends StatelessWidget {
+class TarefaTile extends StatefulWidget {
   Tarefa tarefa;
 
   TarefaTile(this.tarefa);
+
+  @override
+  State<TarefaTile> createState() => _TarefaTileState();
+}
+
+class _TarefaTileState extends State<TarefaTile> {
+  bool estaCarregando = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +35,26 @@ class TarefaTile extends StatelessWidget {
               border: Border(
             right: BorderSide(width: 2.0, color: Colors.white),
           )),
-          child: IconButton(
-            constraints: BoxConstraints(minHeight: 100, minWidth: 50),
-            onPressed: () => Provider.of<ListaDeTarefas>(context, listen: false).removerTarefa(tarefa),
-            icon: Icon(Icons.done, color: Colors.green, size: 40.0),
-          ),
+          child: estaCarregando
+              ? CircularProgressIndicator()
+              : IconButton(
+                  constraints: BoxConstraints(minHeight: 100, minWidth: 50),
+                  onPressed: () async {
+                    setState(() {
+                      estaCarregando = true;
+                    });
+                    await Provider.of<ListaDeTarefas>(context, listen: false)
+                        .removerTarefa(widget.tarefa);
+
+                    setState(() {
+                      estaCarregando = false;
+                    });
+                  },
+                  icon: Icon(Icons.done, color: Colors.green, size: 40.0),
+                ),
         ),
         title: Text(
-          tarefa.titulo,
+          widget.tarefa.titulo,
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
         subtitle: Row(

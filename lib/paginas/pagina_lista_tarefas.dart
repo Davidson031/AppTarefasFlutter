@@ -16,27 +16,35 @@ class PaginaListaTarefas extends StatefulWidget {
 }
 
 class _PaginaListaTarefasState extends State<PaginaListaTarefas> {
-
   @override
   Widget build(BuildContext context) {
-
-    final lista = Provider.of<ListaDeTarefas>(context).tarefas;
-
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
         title: const Text("Tarefas Pendentes"),
         actions: [
-          IconButton(onPressed: (){
-            Navigator.of(context).pushNamed(Rotas.TELA_ADICIONAR_TAREFA);
-          }, icon: Icon(Icons.add))
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(Rotas.TELA_ADICIONAR_TAREFA);
+              },
+              icon: Icon(Icons.add))
         ],
       ),
-      body: ListView.builder(
-        itemCount: lista.length,
-        itemBuilder: (context, index) {
-          return TarefaTile(lista[index]);
-        },
+      body: FutureBuilder(
+        future: Provider.of<ListaDeTarefas>(context, listen: false)
+            .carregarTarefas(),
+        builder: ((context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return Consumer<ListaDeTarefas>(
+              builder: (ctx, tarefas, child) => ListView.builder(
+                itemCount: tarefas.itemsCount,
+                itemBuilder: (ctx, index) => TarefaTile(tarefas.tarefas[index]),
+              ),
+            );
+          }
+        }),
       ),
     );
   }

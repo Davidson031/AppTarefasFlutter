@@ -1,5 +1,6 @@
 import 'package:app_tarefas/models/listaDeTarefas.dart';
 import 'package:app_tarefas/models/tarefa.dart';
+import 'package:app_tarefas/utils/rotas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,15 +21,18 @@ class _PaginaAdicionarTarefaState extends State<PaginaAdicionarTarefa> {
   void enviarForm() {
     _formKey.currentState?.save();
 
-    // final provider = Provider.of<ListaDeTarefas>(context, listen: false)
-    //     .adicionarTarefa(Tarefa(_tituloTarefa, _linkTarefa));
+    final provider = Provider.of<ListaDeTarefas>(context, listen: false)
+        .adicionarTarefa(Tarefa("10", _tituloTarefa, _linkTarefa));
+
+    Navigator.of(context).popAndPushNamed(Rotas.TELA_PRINCIPAL);
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adicionar Nova Tarefa'),
+        title: const Text('Adicionar'),
       ),
       body: Form(
         key: _formKey,

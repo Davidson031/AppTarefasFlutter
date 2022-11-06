@@ -9,23 +9,29 @@ class ListaDeTarefas with ChangeNotifier {
     return [..._tarefas];
   }
 
-  void adicionarTarefa(Tarefa tarefa){
+  void adicionarTarefa(Tarefa tarefa) {
     _tarefas.add(tarefa);
     notifyListeners();
   }
 
-  void removerTarefa(Tarefa tarefa){
+  int get itemsCount {
+    return _tarefas.length;
+  }
 
-    //int index = _tarefas.indexWhere((element) => tarefa.id == element.id);
+  Future<void> removerTarefa(Tarefa tarefa) async {
+    await Future.delayed(const Duration(seconds: 2), () {}).then((_) {
+      _tarefas.removeWhere((element) => tarefa.id == element.id);
 
-    _tarefas.removeWhere((element) => tarefa.id == element.id);
+      notifyListeners();
+    });
 
-    print('Remover Tarefa');
+    print(_tarefas);
+  }
+
+  Future<void> carregarTarefas() async {
+
+    await Future.delayed(const Duration(seconds: 2), () {}).then((value) {});
 
     notifyListeners();
-
-    //_tarefas.remo
-
-
   }
 }
