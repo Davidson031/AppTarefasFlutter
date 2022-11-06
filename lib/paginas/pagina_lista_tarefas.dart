@@ -21,13 +21,13 @@ class _PaginaListaTarefasState extends State<PaginaListaTarefas> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        title: const Text("Tarefas Pendentes"),
+        title: const Text("Tarefas Pendente"),
         actions: [
           IconButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(Rotas.TELA_ADICIONAR_TAREFA);
               },
-              icon: Icon(Icons.add))
+              icon: const Icon(Icons.add))
         ],
       ),
       body: FutureBuilder(
@@ -38,10 +38,13 @@ class _PaginaListaTarefasState extends State<PaginaListaTarefas> {
             return const Center(child: CircularProgressIndicator());
           } else {
             return Consumer<ListaDeTarefas>(
-              builder: (ctx, tarefas, child) => ListView.builder(
-                itemCount: tarefas.itemsCount,
-                itemBuilder: (ctx, index) => TarefaTile(tarefas.tarefas[index]),
-              ),
+              builder: (ctx, tarefas, child) => tarefas.itemsCount == 0
+                  ? const Center(child: Text("ZERO"))
+                  : ListView.builder(
+                      itemCount: tarefas.itemsCount,
+                      itemBuilder: (ctx, index) =>
+                          TarefaTile(tarefas.tarefas[index]),
+                    ),
             );
           }
         }),
